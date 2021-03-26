@@ -1,5 +1,5 @@
 import axios from 'axios'
-//test
+
 class Exception {
   /**
    * Exception constructor
