@@ -1,0 +1,24 @@
+{
+  "name": "fm-data-api",
+  "version": "1.0.3",
+  "description": "FileMaker Data Api wrapper for Vue.js",
+  "scripts": {
+    "prepublish" : "uglifyjs -o index.min.js index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.min.js",
+  "keywords": [
+    "FileMaker",
+    "REST",
+    "DataApi",
+    "axios"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "uglify-js": "^3.13.2"
+  }
+}
