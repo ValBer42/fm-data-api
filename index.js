@@ -532,7 +532,7 @@ export default class DataApi {
    */
   deleteRecord (layout, recordId, scripts = []) {
     // Send axios request
-    this.ClientRequest.request(
+    return this.ClientRequest.request(
       'DELETE',
       '/' + this.version + '/databases/' + this.apiDatabase + '/layouts/' + layout + '/records/' + recordId, {
         headers: this.getDefaultHeaders(),
