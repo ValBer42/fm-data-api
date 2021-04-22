@@ -201,10 +201,12 @@ dataApi.getRecords('layout name', sort, offset, limit, portals, scripts).then((r
 let query = [
     {
         'fields'  : [
-            {'fieldname' : 'FirstName', 'fieldvalue' : '==Test'},
-            {'fieldname' : 'LastName', 'fieldvalue' : '==Test'},
-        ],
-        'options' : {'omit': false}
+            { fieldname : 'd_firstName', fieldvalue : '==Jean'},
+            { fieldname : 'd_lastName', fieldvalue : '==Dupond'},
+            { fieldname : 'd_age', fieldvalue : '30'},
+            { fieldname : 'd_height', fieldvalue : '160...180'},
+            { fieldname : 'd_sex', fieldvalue : 'male', omit: true},
+        ]
     }
 ];
 
@@ -212,6 +214,87 @@ dataApi.findRecords('layout name', query, sort, offset, limit,  portals, scripts
     console.log(record)
     // display the wished record.
 });
+```
+This example of request will find people named Jean Dupond, who are 30 years old, with an height between 160 and 180 cm, and who are not male.
+The dataInfo option is by default on false, on true it will provide the records on this form :
+
+```javascript
+{
+    "response": {
+        "dataInfo": {
+            "database": "XXXXX",
+            "layout": "XXXXX",
+            "table": "XXXXX",
+            "totalRecordCount": 29,
+            "foundCount": 29,
+            "returnedCount": 9
+        },
+        "data": [{
+            "fieldData": {
+                "d_descriptif": "zzzzz",
+                "d_prix": "zzzzz",
+                .
+                .
+                .
+            },
+            "portalData": {},
+            "recordId": "35",
+            "modId": "0"
+        }, {
+            "fieldData": {
+                "d_descriptif": "zzzzz",
+                "d_prix": "zzzzz",
+                .
+                .
+                .
+            },
+            "portalData": {},
+            "recordId": "32",
+            "modId": "2"
+        },
+        .
+        .
+        .
+        ]
+    },
+    "messages": [{
+        "code": "0",
+        "message": "OK"
+    }]
+}
+```
+
+which bring the data foundCount, for example. By default the data form is :
+
+```javascript
+[
+        {
+            "fieldData": {
+                "d_descriptif": "zzzzz",
+                "d_prix": "zzzzz",
+                .
+                .
+                .
+            },
+            "portalData": {},
+            "recordId": "35",
+            "modId": "0"
+        }, {
+            "fieldData": {
+                "d_descriptif": "zzzzz",
+                "d_prix": "zzzzz",
+                .
+                .
+                .
+            },
+            "portalData": {},
+            "recordId": "32",
+            "modId": "2"
+        },
+        .
+        .
+        .
+]
 ```
 
 ### Set global fields
