@@ -1,6 +1,6 @@
 {
   "name": "fm-data-api",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "FileMaker Data Api wrapper for Vue.js",
   "scripts": {
     "prepublish" : "uglifyjs -o index.min.js index.js",

@@ -205,17 +205,35 @@ let query1 = [
             { fieldname : 'd_lastName', fieldvalue : '==Dupond'},
             { fieldname : 'd_age', fieldvalue : '30'},
             { fieldname : 'd_height', fieldvalue : '160...180'},
-            { fieldname : 'd_sex', fieldvalue : 'male', omit: true},
+            { fieldname : 'd_sex', fieldvalue : 'male'},
         ]
     }
 ];
 
-dataApi.findRecords('layout name', query1, sort, offset, limit,  portals, scripts, dataInfo, responseLayout).then((record) => {
+dataApi.findRecords('layout name', query1, sort, offset, limit, portals, scripts, dataInfo, responseLayout).then((record) => {
     console.log(record)
     // display the wished record.
 });
 
 let query2 = [
+    {
+        'fields'  : [
+            { fieldname : 'd_firstName', fieldvalue : '==Jean'},
+            { fieldname : 'd_lastName', fieldvalue : '==Dupond'},
+            { fieldname : 'd_age', fieldvalue : '30'},
+            { fieldname : 'd_height', fieldvalue : '160...180'},
+            { fieldname : 'd_sex', fieldvalue : 'male'},
+            { omit : true }
+        ]
+    }
+];
+
+dataApi.findRecords('layout name', query2, sort, offset, limit, portals, scripts, dataInfo, responseLayout).then((record) => {
+    console.log(record)
+    // display the wished record.
+});
+
+let query3 = [
     {
         'fields'  : [
             { fieldname : 'd_firstName', fieldvalue : '==Marie'},
@@ -231,14 +249,16 @@ let query2 = [
     }
 ];
 
-dataApi.findRecords('layout name', query2, sort, offset, limit,  portals, scripts, dataInfo, responseLayout).then((record) => {
+dataApi.findRecords('layout name', query3, sort, offset, limit, portals, scripts, dataInfo, responseLayout).then((record) => {
     console.log(record)
     // display the wished record.
 });
 ```
-In this example of request query1 will find people named Jean Dupond AND who are 30 years old AND with an height between 160 and 180 cm AND who are not male.
+In this example of request query1 will find people named Jean Dupond AND who are 30 years old AND with an height between 160 and 180 cm AND who are male.
 
-query2 will find people named Marie AND who are between 20 and 30 years old, OR people named Ernest AND with an height between 150 and 180 cm AND who are male.
+query2 will find all the people who don't match these criteria
+
+query3 will find people named Marie AND who are between 20 and 30 years old, OR people named Ernest AND with an height between 150 and 180 cm AND who are male.
 
 The dataInfo option is by default on false, on true it will provide the records on this form :
 

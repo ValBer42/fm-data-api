@@ -982,24 +982,17 @@ export default class DataApi {
           }
         } else {
           const objRequest = {}
-          const objOmit = {}
           for (const index in queryItem.fields) {
             const fieldData = queryItem.fields[index]
 
             if ({}.propertyIsEnumerable.call(fieldData, 'fieldname') && {}.propertyIsEnumerable.call(fieldData, 'fieldvalue')) {
-              if ({}.propertyIsEnumerable.call(fieldData, 'omit') && fieldData.omit) {
-                objOmit[fieldData.fieldname.replace('"', '').trim()] = fieldData.fieldvalue
-                objOmit.omit = 'true'
-              } else {
-                objRequest[fieldData.fieldname.replace('"', '').trim()] = fieldData.fieldvalue
-              }
+              objRequest[fieldData.fieldname.replace('"', '').trim()] = fieldData.fieldvalue
+            } else if ({}.propertyIsEnumerable.call(fieldData, 'omit') && fieldData.omit) {
+              objRequest.omit = 'true'
             }
           }
           if (Object.entries(objRequest).length > 0) {
             item.push(objRequest)
-          }
-          if (Object.entries(objOmit).length > 0) {
-            item.push(objOmit)
           }
         }
       }
