@@ -198,7 +198,7 @@ dataApi.getRecords('layout name', sort, offset, limit, portals, scripts).then((r
 
 ```javascript
 
-let query = [
+let query1 = [
     {
         'fields'  : [
             { fieldname : 'd_firstName', fieldvalue : '==Jean'},
@@ -210,12 +210,36 @@ let query = [
     }
 ];
 
-dataApi.findRecords('layout name', query, sort, offset, limit,  portals, scripts, dataInfo, responseLayout).then((record) => {
+dataApi.findRecords('layout name', query1, sort, offset, limit,  portals, scripts, dataInfo, responseLayout).then((record) => {
+    console.log(record)
+    // display the wished record.
+});
+
+let query2 = [
+    {
+        'fields'  : [
+            { fieldname : 'd_firstName', fieldvalue : '==Marie'},
+            { fieldname : 'd_age', fieldvalue : '20...30'},
+        ]
+    },
+    {
+        'fields'  : [
+            { fieldname : 'd_firstName', fieldvalue : '==Ernest'},
+            { fieldname : 'd_height', fieldvalue : '150...180'},
+            { fieldname : 'd_sex', fieldvalue : 'male'},
+        ]
+    }
+];
+
+dataApi.findRecords('layout name', query2, sort, offset, limit,  portals, scripts, dataInfo, responseLayout).then((record) => {
     console.log(record)
     // display the wished record.
 });
 ```
-This example of request will find people named Jean Dupond, who are 30 years old, with an height between 160 and 180 cm, and who are not male.
+In this example of request query1 will find people named Jean Dupond AND who are 30 years old AND with an height between 160 and 180 cm AND who are not male.
+
+query2 will find people named Marie AND who are between 20 and 30 years old, OR people named Ernest AND with an height between 150 and 180 cm AND who are male.
+
 The dataInfo option is by default on false, on true it will provide the records on this form :
 
 ```javascript
